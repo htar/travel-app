@@ -21,18 +21,14 @@ dd {
 	margin: 0;
 	padding: 0;
 }
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
 	list-style: none;
 }
 html:focus-within {
 	scroll-behavior: smooth;
 }
-body {
-	min-height: 100vh;
-	text-rendering: optimizeSpeed;
-	line-height: 1.5;
-}
+
 a:not([class]) {
 	text-decoration-skip-ink: auto;
 }
@@ -82,15 +78,27 @@ a:visited {
 	}
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 
+#root,
 body {
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
 	font-size: 14px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Open Sans", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Open Sans", sans-serif;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	justify-content: flex-start;
+	position: relative;
 }

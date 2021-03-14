@@ -1,0 +1,23 @@
+.rss-logo {
+	max-width: 100px;
+}
+
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.copyright {
+	a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	img {
+		display: inline-block;
+		margin: 20px 0;
+	}
+}
