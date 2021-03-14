@@ -6,8 +6,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import InputBase from '@material-ui/core/InputBase'
 import Badge from '@material-ui/core/Badge'
-// import MenuItem from '@material-ui/core/MenuItem'
-// import Menu from '@material-ui/core/Menu'
+import {Link} from 'react-router-dom'
 import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 import AccountCircle from '@material-ui/icons/AccountCircle'
@@ -83,9 +82,7 @@ export const Header = () => {
 		// setAnchorEl(true)
 	}
 
-
 	const menuId = 'primary-search-account-menu'
-
 
 	return (
 		<AppBar position="static">
@@ -99,7 +96,7 @@ export const Header = () => {
 					<MenuIcon />
 				</IconButton>
 				<Typography className={classes.title} variant="h6" noWrap>
-					Material-UI
+					<Link to="/auth">Material-UI</Link>
 				</Typography>
 				<div className={classes.search}>
 					<div className={classes.searchIcon}>

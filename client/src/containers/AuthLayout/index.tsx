@@ -4,7 +4,6 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Redirect,
 	useRouteMatch,
 } from 'react-router-dom'
 import LoginPage from '../../pages/LoginPage'
@@ -39,8 +38,7 @@ const AuthLayout = () => {
 			</Avatar>
 			<Router>
 				<Switch>
-					<Redirect exact from="/" to={`${path}/login`} />
-					<Route path={`${path}/login`}>
+					<Route exact path={path}>
 						<LoginPage />
 					</Route>
 					<Route path={`${path}/sign-up`}>
