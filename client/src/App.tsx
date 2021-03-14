@@ -1,13 +1,15 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import LoginPage from './pages/LoginPage'
 function App() {
 	return (
-		<div className="App">
-			<h1>React Game</h1>
-			<Button variant="contained" color="primary">
-				Hello World
-			</Button>
-		</div>
+		<Router>
+			<Switch>
+				<Route path="/">
+					<LoginPage />
+				</Route>
+			</Switch>
+		</Router>
 	)
 }
 
