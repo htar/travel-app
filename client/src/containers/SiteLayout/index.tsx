@@ -5,12 +5,12 @@ import {Header} from '../../components/Header'
 import {Footer} from '../../components/Footer'
 import HomePage from '../../pages/HomePage'
 import CountryDetails from '../../pages/CountryDetails'
-import './SiteLayout.scss'
+import classes from './SiteLayout.module.scss'
 
 const SiteLayout = ()=> {
 	let { path } = useRouteMatch();
 	return (
-		<main className="main">
+		<main className={classes.main}>
 			<Header></Header>
 			<Router>
 				<Switch>

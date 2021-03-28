@@ -1,7 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
 import './Footer.scss'
 
 type FooterProps = {
@@ -16,13 +15,13 @@ function Copyright() {
 			color="textSecondary"
 			align="center"
 		>
-			<Link color="inherit" href="https://rs.school/js/">
+			<a color="inherit" href="https://rs.school/js/" target="_blank">
 				<img
 					className="rss-logo"
 					alt="RSS"
 					src="https://rs.school/images/rs_school_js.svg"
 				/>
-			</Link>
+			</a>
 		</Typography>
 	)
 }
@@ -36,10 +35,10 @@ export const Footer: FunctionComponent<FooterProps> = ({githubLinks}) => {
 						return (
 							<span className="footer-github">
 								Created {new Date().getFullYear()}. by
-								<Link key={link} color="inherit" href={link}>
+								<a key={link} color="inherit" href={link} target="_blank">
 									{link}
 									<img className="github-logo" src="/GitHub.png" />
-								</Link>
+								</a>
 							</span>
 						)
 					})}
