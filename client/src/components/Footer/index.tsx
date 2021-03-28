@@ -10,30 +10,37 @@ type FooterProps = {
 
 function Copyright() {
 	return (
-		<Typography className="copyright" variant="body2" color="textSecondary" align="center">
+		<Typography
+			className="copyright"
+			variant="body2"
+			color="textSecondary"
+			align="center"
+		>
 			<Link color="inherit" href="https://rs.school/js/">
 				<img
 					className="rss-logo"
 					alt="RSS"
 					src="https://rs.school/images/rs_school_js.svg"
 				/>
-			</Link>{' '}
-			{new Date().getFullYear()}
-			{'.'}
+			</Link>
 		</Typography>
 	)
 }
 
 export const Footer: FunctionComponent<FooterProps> = ({githubLinks}) => {
 	return (
-		<footer className="footer">
-			<Container maxWidth="lg">
+		<footer>
+			<Container className="footer" maxWidth="lg">
 				<Typography variant="h6" align="center" gutterBottom>
 					{githubLinks.map((link) => {
 						return (
-							<Link key={link} color="inherit" href={link}>
-								Created by {link}
-							</Link>
+							<span className="footer-github">
+								Created {new Date().getFullYear()}. by
+								<Link key={link} color="inherit" href={link}>
+									{link}
+									<img className="github-logo" src="/GitHub.png" />
+								</Link>
+							</span>
 						)
 					})}
 				</Typography>
