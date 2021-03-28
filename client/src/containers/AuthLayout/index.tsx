@@ -8,34 +8,20 @@ import {
 } from 'react-router-dom'
 import LoginPage from '../../pages/LoginPage'
 import SignUpPage from '../../pages/SignUpPage'
-import Avatar from '@material-ui/core/Avatar'
-import {makeStyles} from '@material-ui/core/styles'
 import {Link} from 'react-router-dom'
+import classes from './AuthLayout.module.scss'
 
-const useStyles = makeStyles(() => ({
-	logo: {
-		position: 'fixed',
-		top: '20px',
-		left: '20px',
-		width: '60px',
-		height: '60px',
-		backgroundColor: '#3f51b5',
-	},
-	link: {
-		color: '#fff',
-	},
-}))
+
 
 const AuthLayout = () => {
-	const classes = useStyles()
 	let {path} = useRouteMatch()
 	return (
-		<main className="main">
-			<Avatar className={classes.logo}>
+		<>
+			<span className={classes.logo}>
 				<Link className={classes.link} to={'/'}>
 					TA
 				</Link>
-			</Avatar>
+			</span>
 			<Router>
 				<Switch>
 					<Route exact path={path}>
@@ -46,7 +32,7 @@ const AuthLayout = () => {
 					</Route>
 				</Switch>
 			</Router>
-		</main>
+		</>
 	)
 }
 

@@ -8,6 +8,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import classes from './Header.module.scss'
 
 export const Header = () => {
+	const auth = false
 	const handleProfileMenuOpen = (event: MouseEvent) => {
 		console.log('handleProfileMenuOpen', event)
 		// setAnchorEl(true)
@@ -26,24 +27,27 @@ export const Header = () => {
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
-						<input
-							placeholder="Search…"
-							autoFocus
-							className={classes.input}
-						/>
+						<input placeholder="Search…" autoFocus className={classes.input} />
 					</div>
 				</div>
 				<div className={classes.sectionDesktop}>
-					<IconButton
-						edge="end"
-						aria-label="account of current user"
-						aria-controls={menuId}
-						aria-haspopup="true"
-						onClick={handleProfileMenuOpen}
-						color="inherit"
-					>
-						<AccountCircle />
-					</IconButton>
+					{auth ? (
+						<IconButton
+							edge="end"
+							aria-label="account of current user"
+							aria-controls={menuId}
+							aria-haspopup="true"
+							onClick={handleProfileMenuOpen}
+							color="inherit"
+						>
+							<AccountCircle />
+						</IconButton>
+					) : (
+						<div className={classes.auth}>
+							<Link to="/auth">login</Link> /
+							<Link to="/auth/sign-up">sign-up</Link>
+						</div>
+					)}
 				</div>
 			</Toolbar>
 		</AppBar>
