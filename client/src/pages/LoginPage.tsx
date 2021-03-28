@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
+import AuthService from '../services/AuthService'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -11,7 +12,17 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import {makeStyles} from '@material-ui/core/styles'
+import {Notification} from '../components/Notification'
+import {useFormik} from 'formik'
+import * as yup from 'yup'
 
+const validationSchema = yup.object().shape({
+	email: yup
+		.string()
+		.email('Enter a valid email')
+		.required('Email is required'),
+	password: yup.string().required('Password is required'),
+})
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -48,6 +59,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginPage() {
 	const classes = useStyles()
+	const [alert, setAlert] = useState({
+		open: false,
+		status: 'success',
+		message: 'Status success!',
+	})
+
+	const formik = useFormik({
+		initialValues: {
+			email: '',
+			password: '',
+		},
+		validationSchema: validationSchema,
+		onSubmit: (values: any) => {
+			AuthService.login(values, (status: string): void => {
+				let option = {open: true, status: 'success', message: 'Go login!'}
+				if (status !== 'success') {
+					option = Object.assign(option, {status, message: 'Something wrong'})
+				}
+				setAlert(option)
+				if (status === 'success') {
+					setTimeout(() => {
+						// history.push('/auth')
+					}, 3000)
+				}
+			})
+		},
+	})
 
 	return (
 		<Grid container component="main" className={classes.root}>
@@ -61,16 +99,20 @@ export default function LoginPage() {
 					<Typography component="h1" variant="h5">
 						Sign in
 					</Typography>
-					<form className={classes.form} noValidate>
+					<form className={classes.form} onSubmit={formik.handleSubmit}>
 						<TextField
 							variant="outlined"
 							margin="normal"
 							required
 							fullWidth
 							id="email"
+							onChange={formik.handleChange}
 							label="Email Address"
 							name="email"
 							autoComplete="email"
+							value={formik.values.email}
+							error={formik.touched.email && Boolean(formik.errors.email)}
+							helperText={formik.touched.email && formik.errors.email}
 							autoFocus
 						/>
 						<TextField
@@ -82,6 +124,10 @@ export default function LoginPage() {
 							label="Password"
 							type="password"
 							id="password"
+							value={formik.values.password}
+							onChange={formik.handleChange}
+							error={formik.touched.password && Boolean(formik.errors.password)}
+							helperText={formik.touched.password && formik.errors.password}
 							autoComplete="current-password"
 						/>
 						<FormControlLabel
@@ -99,12 +145,21 @@ export default function LoginPage() {
 						</Button>
 						<Grid container justify="center">
 							<Grid item>
-								<Link to={`/auth/sign-up`}>{"Don't have an account? Sign Up"}</Link>
+								<Link to={`/auth/sign-up`}>
+									{"Don't have an account? Sign Up"}
+								</Link>
 							</Grid>
 						</Grid>
 					</form>
 				</div>
 			</Grid>
+			{alert.open && (
+				<Notification
+					open={alert.open}
+					status={alert.status}
+					message={alert.message}
+				/>
+			)}
 		</Grid>
 	)
 }

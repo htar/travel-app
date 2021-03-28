@@ -31,9 +31,9 @@ export const Footer: FunctionComponent<FooterProps> = ({githubLinks}) => {
 		<footer>
 			<Container className="footer" maxWidth="lg">
 				<Typography variant="h6" align="center" gutterBottom>
-					{githubLinks.map((link) => {
+					{githubLinks.map((link, index) => {
 						return (
-							<span className="footer-github">
+							<span className="footer-github" key={index}>
 								Created {new Date().getFullYear()}. by
 								<a key={link} color="inherit" href={link} target="_blank">
 									{link}
