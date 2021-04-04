@@ -1,23 +1,23 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
-import AuthLayout from './containers/AuthLayout'
-import SiteLayout from './containers/SiteLayout'
 import {Cards} from './components/Cards'
 import PrivateRoute from './helpers/GuardedRoute'
+const AuthLayout = React.lazy(() => import('./containers/AuthLayout'))
+const SiteLayout = React.lazy(() => import('./containers/SiteLayout'))
+
 function App() {
+
 	return (
 		<Router>
-			<Switch>
-				<Route path="/auth">
-					<AuthLayout />
-				</Route>
-				<Route exact path="/">
-					<SiteLayout />
-				</Route>
-				<Route render={() => <h1> 404 Not found</h1>} />
-				<PrivateRoute path="/list" component={Cards}></PrivateRoute>
-			</Switch>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Switch>
+					<Route path="/auth" component={AuthLayout}></Route>
+					<Route exact path="/" component={SiteLayout}></Route>
+					<Route render={() => <h1> 404 Not found</h1>} />
+					<PrivateRoute path="/list" component={Cards}></PrivateRoute>
+				</Switch>
+			</Suspense>
 		</Router>
 	)
 }
