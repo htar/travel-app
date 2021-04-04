@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 import AuthLayout from './containers/AuthLayout'
 import SiteLayout from './containers/SiteLayout'
-import { Cards } from './components/Cards'
+import {Cards} from './components/Cards'
 import PrivateRoute from './helpers/GuardedRoute'
 function App() {
 	return (
@@ -15,10 +15,8 @@ function App() {
 				<Route exact path="/">
 					<SiteLayout />
 				</Route>
-				<PrivateRoute
-					path='/list'
-					component={Cards}
-				></PrivateRoute>
+				<Route render={() => <h1> 404 Not found</h1>} />
+				<PrivateRoute path="/list" component={Cards}></PrivateRoute>
 			</Switch>
 		</Router>
 	)
