@@ -1,0 +1,28 @@
+{
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "JWT": {
+      "required": true
+    },
+    "MONGODB_URI": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "travel-app",
+  "scripts": {
+    "test": "npm run test --prefix client"
+  },
+  "stack": "heroku-20"
+}
